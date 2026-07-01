@@ -139,17 +139,12 @@ function byDateUpcoming(a, b) {
 }
 
 /* ---- スポンサー枠の描画 -------------------------------------------
-   契約スポンサーがあれば表示、無ければ「募集中」CTA（営業窓口）。  */
+   非営利・ボランティア運営のため、スポンサー／広告枠は使用しません。
+   SPONSORS が空のあいだは何も表示しません（募集CTAも出しません）。  */
 function sponsorHTML(slot) {
   const all = (typeof SPONSORS !== "undefined" ? SPONSORS : []);
   const list = all.filter(s => !s.slot || s.slot === slot);
-  const railCls = slot === "rail" ? " ad-slot--rail" : " ad-slot--lead";
-  if (!list.length) {
-    return `<a class="ad-slot ad-slot--cta${railCls}" href="plan.html#sponsor">
-      <span><small>SPONSOR</small><br><b>スポンサー募集中</b>
-      <span class="ad-slot__sub">この枠に地域のお店を掲載しませんか？ →</span></span>
-    </a>`;
-  }
+  if (!list.length) return "";
   return list.map(s => `
     <a class="sponsor-card${slot === "rail" ? " sponsor-card--rail" : ""}" href="${s.url}" target="_blank" rel="sponsored noopener">
       <span class="sponsor-card__pr">PR</span>

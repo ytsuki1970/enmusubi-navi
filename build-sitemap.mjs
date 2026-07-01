@@ -17,7 +17,6 @@ add("/", "1.0", "daily");
 add("/events.html", "0.9", "daily");
 add("/prefecture.html", "0.8", "weekly");
 add("/columns.html", "0.6", "weekly");
-add("/plan.html", "0.5", "monthly");
 add("/about.html", "0.4", "monthly");
 add("/post.html", "0.4", "monthly");
 PREFECTURES.forEach((p) => add(`/prefecture.html?pref=${p.key}`, "0.7", "weekly"));

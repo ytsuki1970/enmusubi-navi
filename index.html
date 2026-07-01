@@ -46,7 +46,6 @@
       <a href="prefecture.html">県から探す</a>
       <a href="columns.html">コラム</a>
       <a href="about.html">このサイトは</a>
-      <a class="btn btn--primary" href="plan.html">掲載・料金</a>
     </nav>
   </div>
 </header>
@@ -65,7 +64,7 @@
       <div class="hero__stats">
         <div class="hero__stat"><b>47</b><span>都道府県</span></div>
         <div class="hero__stat"><b id="stat-count">--</b><span>掲載イベント</span></div>
-        <div class="hero__stat"><b>0<small style="font-size:1rem">円〜</small></b><span>掲載料</span></div>
+        <div class="hero__stat"><b>無料</b><span>掲載料</span></div>
       </div>
     </div>
     <div class="hero__art" aria-hidden="true">
@@ -106,11 +105,6 @@
     </div>
     <button class="btn btn--ink" type="submit">この条件で探す</button>
   </form>
-</div>
-
-<!-- Lead ad -->
-<div class="wrap" style="margin-top:2rem">
-  <div data-sponsor data-slot="lead"></div>
 </div>
 
 <!-- Featured events -->
@@ -180,14 +174,13 @@
   </div>
 </section>
 
-<!-- CTA for organizers -->
+<!-- 情報提供のお願い（無料・ボランティア運営） -->
 <section class="section">
   <div class="wrap" style="background:var(--indigo);color:#fff;border-radius:var(--r);padding:clamp(2rem,5vw,3.5rem);text-align:center">
-    <h2 style="font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:.8rem">主催者・スポンサーの方へ</h2>
-    <p style="opacity:.9;max-width:54ch;margin:0 auto 1.6rem">自治体・公的団体の婚活イベントは<strong>無料</strong>で掲載。民間イベントの掲載や、地域企業のスポンサー枠もご用意しています。</p>
+    <h2 style="font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:.8rem">イベント情報をお寄せください</h2>
+    <p style="opacity:.9;max-width:54ch;margin:0 auto 1.6rem">当サイトは有志による<strong>ボランティア運営</strong>で、掲載はすべて<strong>無料</strong>です。自治体・地方銀行・公的団体などが主催する婚活イベントの情報をご存じの方は、ぜひお知らせください。</p>
     <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
-      <a class="btn btn--primary" href="plan.html">掲載プラン・料金を見る →</a>
-      <a class="btn btn--ghost" style="border-color:#fff;color:#fff" href="post.html">無料掲載を依頼</a>
+      <a class="btn btn--ghost" style="border-color:#fff;color:#fff" href="post.html">イベント情報を提供（無料）</a>
     </div>
   </div>
 </section>
@@ -229,8 +222,8 @@
   </div>
 </footer>
 
-<script src="assets/js/data.js?v=9"></script>
-<script src="assets/js/app.js?v=9"></script>
+<script src="assets/js/data.js?v=10"></script>
+<script src="assets/js/app.js?v=10"></script>
 <script>
   // 件数
   $("#stat-count").textContent = EVENTS.length;
