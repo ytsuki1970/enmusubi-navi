@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>イベント一覧 ｜ 縁結びナビ</title>
+<meta name="description" content="全国47都道府県の公的婚活イベントを一覧で。エリア・都道府県・主催・こだわり条件・キーワードで絞り込めます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#D8412E">
+<link rel="canonical" href="https://ytsuki1970.github.io/enmusubi-navi/events.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="縁結びナビ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="イベント一覧 ｜ 縁結びナビ">
+<meta property="og:description" content="全国47都道府県の公的婚活イベントを一覧で。エリア・都道府県・主催・こだわり条件・キーワードで絞り込めます。">
+<meta property="og:url" content="https://ytsuki1970.github.io/enmusubi-navi/events.html">
+<meta property="og:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="イベント一覧 ｜ 縁結びナビ">
+<meta name="twitter:description" content="全国47都道府県の公的婚活イベントを一覧で。エリア・主催・条件で絞り込み。">
+<meta name="twitter:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap site-header__in">
+    <a class="brand" href="index.html"><span class="brand__mark">縁</span><span><span class="brand__name">縁結びナビ</span><br><span class="brand__sub">En-musubi Navi</span></span></a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="site-nav">
+      <a href="index.html">ホーム</a>
+      <a href="events.html">イベント一覧</a>
+      <a href="prefecture.html">県から探す</a>
+      <a href="columns.html">コラム</a>
+      <a href="about.html">このサイトは</a>
+      <a class="btn btn--primary" href="plan.html">掲載・料金</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <p class="page-head__crumb"><a href="index.html">ホーム</a> ／ イベント一覧</p>
+    <p class="page-head roma" style="margin:0">Events</p>
+    <h1>イベント一覧</h1>
+  </div>
+</div>
+
+<div class="wrap">
+  <form class="searchbar" id="filterbar">
+    <div class="field">
+      <label for="f-pref">エリア（県）</label>
+      <select id="f-pref" name="pref"><option value="">すべての県</option></select>
+    </div>
+    <div class="field">
+      <label for="f-org">主催</label>
+      <select id="f-org" name="org">
+        <option value="">すべての主催</option>
+        <option value="center">県センター</option>
+        <option value="city">自治体</option>
+        <option value="public">公的団体</option>
+        <option value="bank">地銀連携</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-tag">こだわり</label>
+      <select id="f-tag" name="tag"><option value="">指定なし</option></select>
+    </div>
+    <div class="field">
+      <label for="f-q">キーワード</label>
+      <input id="f-q" name="q" type="search" placeholder="例：温泉、20代…">
+    </div>
+    <button class="btn btn--ghost" type="reset" id="reset">条件をクリア</button>
+  </form>
+</div>
+
+<section class="section" style="padding-top:2rem">
+  <div class="wrap">
+    <p id="result-count" style="color:var(--ink-soft);font-size:.92rem;margin-bottom:1.2rem"></p>
+    <div class="ev-grid" id="list"></div>
+    <div id="empty" class="empty" hidden>
+      <div class="empty__ic">🔍</div>
+      <p>条件に合うイベントが見つかりませんでした。<br>条件をゆるめてお試しください。</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__bottom" style="border-top:none">
+    <span>© <span id="year"></span> 縁結びナビ / En-musubi Navi</span>
+    <span><a href="about.html">このサイトについて</a> ／ <a href="post.html">掲載のご依頼</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/app.js?v=9"></script>
+<script>
+  const fPref = $("#f-pref"), fOrg = $("#f-org"), fTag = $("#f-tag"), fQ = $("#f-q");
+  fPref.insertAdjacentHTML("beforeend", prefOptionsHTML());
+  [...new Set(EVENTS.flatMap(e => e.tags))].sort().forEach(t => fTag.insertAdjacentHTML("beforeend", `<option value="${t}">${t}</option>`));
+
+  // URLパラメータを初期値に反映
+  ["pref","org","tag","q"].forEach(k => {
+    const v = getParam(k);
+    if (v) { const el = $("#f-" + k); if (el) el.value = v; }
+  });
+
+  function render() {
+    const pref = fPref.value, org = fOrg.value, tag = fTag.value, q = fQ.value.trim().toLowerCase();
+    let list = EVENTS.filter(e => {
+      if (pref && e.pref !== pref) return false;
+      if (org && e.orgType !== org) return false;
+      if (tag && !e.tags.includes(tag)) return false;
+      if (q) {
+        const hay = (e.title + e.summary + e.organizer + e.city + e.tags.join(" ")).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    }).sort(byDateUpcoming);
+
+    $("#result-count").textContent = `${list.length} 件のイベント`;
+    $("#list").innerHTML = list.map(eventCard).join("");
+    $("#empty").hidden = list.length > 0;
+  }
+
+  ["change","input"].forEach(ev => $("#filterbar").addEventListener(ev, render));
+  $("#reset").addEventListener("click", () => setTimeout(render, 0));
+  render();
+</script>
+</body>
+</html>

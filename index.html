@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>縁結びナビ ｜ 全国の公的婚活イベントまとめサイト</title>
+<meta name="description" content="全国47都道府県の自治体・地方銀行・公的団体が主催する婚活イベントを一覧でチェック。各都道府県の公式結婚支援センターと、安心・安全な出会いの場をまとめて探せます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#D8412E">
+<link rel="canonical" href="https://ytsuki1970.github.io/enmusubi-navi/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="縁結びナビ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="縁結びナビ ｜ 全国の公的婚活イベントまとめサイト">
+<meta property="og:description" content="全国47都道府県の自治体・地方銀行・公的団体が主催する婚活イベントを一覧でチェック。各都道府県の公式結婚支援センターと、安心・安全な出会いの場をまとめて探せます。">
+<meta property="og:url" content="https://ytsuki1970.github.io/enmusubi-navi/">
+<meta property="og:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="縁結びナビ ｜ 全国の公的婚活イベントまとめサイト">
+<meta name="twitter:description" content="全国47都道府県の公的な婚活イベントと、各都道府県の公式結婚支援センターをまとめて探せます。">
+<meta name="twitter:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="wrap site-header__in">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">縁</span>
+      <span>
+        <span class="brand__name">縁結びナビ</span><br>
+        <span class="brand__sub">En-musubi Navi</span>
+      </span>
+    </a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="site-nav">
+      <a href="index.html">ホーム</a>
+      <a href="events.html">イベント一覧</a>
+      <a href="prefecture.html">県から探す</a>
+      <a href="columns.html">コラム</a>
+      <a href="about.html">このサイトは</a>
+      <a class="btn btn--primary" href="plan.html">掲載・料金</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="hero__eyebrow">公的機関主催だから、安心</span>
+      <h1>全国の<span class="accent">縁結び</span>イベントを、<br>ひとつの場所に。</h1>
+      <p class="hero__lede">自治体・地方銀行・公的団体が開く婚活イベントだけを集めました。営業色のない、信頼できる出会いの場を、全国47都道府県から探せます。</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="events.html">イベントを探す →</a>
+        <a class="btn btn--ghost" href="about.html">使い方を見る</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><b>47</b><span>都道府県</span></div>
+        <div class="hero__stat"><b id="stat-count">--</b><span>掲載イベント</span></div>
+        <div class="hero__stat"><b>0<small style="font-size:1rem">円〜</small></b><span>掲載料</span></div>
+      </div>
+    </div>
+    <div class="hero__art" aria-hidden="true">
+      <div class="hero__medallion"></div>
+      <div class="hero__kanji">縁</div>
+      <span class="hero__ribbon">JAPAN · 婚活ナビ</span>
+      <span class="hero__float f1">💞</span>
+      <span class="hero__float f2">🎈</span>
+      <span class="hero__float f3">♨️</span>
+    </div>
+  </div>
+</section>
+
+<!-- Search bar -->
+<div class="wrap">
+  <form class="searchbar" action="events.html" method="get">
+    <div class="field">
+      <label for="f-pref">エリア（県）</label>
+      <select id="f-pref" name="pref"><option value="">すべての県</option></select>
+    </div>
+    <div class="field">
+      <label for="f-org">主催</label>
+      <select id="f-org" name="org">
+        <option value="">すべての主催</option>
+        <option value="center">県センター</option>
+        <option value="city">自治体</option>
+        <option value="public">公的団体</option>
+        <option value="bank">地銀連携</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-tag">こだわり</label>
+      <select id="f-tag" name="tag"><option value="">指定なし</option></select>
+    </div>
+    <div class="field">
+      <label for="f-q">キーワード</label>
+      <input id="f-q" name="q" type="search" placeholder="例：クルーズ、温泉…">
+    </div>
+    <button class="btn btn--ink" type="submit">この条件で探す</button>
+  </form>
+</div>
+
+<!-- Lead ad -->
+<div class="wrap" style="margin-top:2rem">
+  <div data-sponsor data-slot="lead"></div>
+</div>
+
+<!-- Featured events -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-head__kicker">Pick Up</span>
+      <h2 class="sec-head__title">注目のイベント</h2>
+    </div>
+    <div class="ev-grid" id="featured" data-reveal></div>
+    <div style="text-align:center;margin-top:2rem">
+      <a class="btn btn--ghost" href="events.html">すべてのイベントを見る →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why public -->
+<section class="section band">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center">
+      <span class="sec-head__kicker" style="color:#ffb4a8">Why Public</span>
+      <h2 class="sec-head__title" style="color:#fff">公的婚活が選ばれる理由</h2>
+    </div>
+    <div class="feature-row">
+      <div class="feature" data-reveal data-d="1">
+        <div class="feature__ic">🛡️</div>
+        <h3>身元の安心</h3>
+        <p>独身証明書や本人確認を求める主催が多く、安心して参加できます。</p>
+      </div>
+      <div class="feature" data-reveal data-d="2">
+        <div class="feature__ic">💴</div>
+        <h3>良心的な費用</h3>
+        <p>地域貢献事業として運営されるため、参加費が手頃なものが中心です。</p>
+      </div>
+      <div class="feature" data-reveal data-d="3">
+        <div class="feature__ic">🤝</div>
+        <h3>手厚いサポート</h3>
+        <p>当日はアドバイザーが進行をサポート。初参加でも会話に困りません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Prefecture grid -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-head__kicker">Area</span>
+      <h2 class="sec-head__title">エリアから探す</h2>
+      <p class="lede" style="margin-top:.6rem">気になる地方をタップ。各エリア・都道府県の最新イベントへ。</p>
+    </div>
+    <div class="pref-grid" id="pref-grid" data-reveal></div>
+  </div>
+</section>
+
+<!-- Columns -->
+<section class="section band--paper">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-head__kicker">Column</span>
+      <h2 class="sec-head__title">婚活の準備に役立つコラム</h2>
+    </div>
+    <div class="col-grid" id="home-columns" data-reveal></div>
+    <div style="text-align:center;margin-top:2rem">
+      <a class="btn btn--ghost" href="columns.html">コラム一覧へ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA for organizers -->
+<section class="section">
+  <div class="wrap" style="background:var(--indigo);color:#fff;border-radius:var(--r);padding:clamp(2rem,5vw,3.5rem);text-align:center">
+    <h2 style="font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:.8rem">主催者・スポンサーの方へ</h2>
+    <p style="opacity:.9;max-width:54ch;margin:0 auto 1.6rem">自治体・公的団体の婚活イベントは<strong>無料</strong>で掲載。民間イベントの掲載や、地域企業のスポンサー枠もご用意しています。</p>
+    <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn--primary" href="plan.html">掲載プラン・料金を見る →</a>
+      <a class="btn btn--ghost" style="border-color:#fff;color:#fff" href="post.html">無料掲載を依頼</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="wrap site-footer__top">
+    <div>
+      <a class="brand" href="index.html">
+        <span class="brand__mark">縁</span>
+        <span><span class="brand__name">縁結びナビ</span><br><span class="brand__sub">En-musubi Navi</span></span>
+      </a>
+      <p class="site-footer__about" style="margin-top:1rem">全国47都道府県の公的な婚活イベントをまとめてお届けする、縁結び情報サイトです。</p>
+    </div>
+    <div>
+      <h4>探す</h4>
+      <ul>
+        <li><a href="events.html">イベント一覧</a></li>
+        <li><a href="prefecture.html">県から探す</a></li>
+        <li><a href="columns.html">コラム</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>サイト情報</h4>
+      <ul>
+        <li><a href="about.html">このサイトについて</a></li>
+        <li><a href="post.html">掲載のご依頼</a></li>
+        <li><a href="about.html#policy">免責事項</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>エリア</h4>
+      <ul id="footer-pref"></ul>
+    </div>
+  </div>
+  <div class="wrap site-footer__bottom">
+    <span>© <span id="year"></span> 縁結びナビ / En-musubi Navi</span>
+    <span>掲載情報は各主催者の公式発表をご確認ください。</span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/app.js?v=9"></script>
+<script>
+  // 件数
+  $("#stat-count").textContent = EVENTS.length;
+
+  // 県セレクト（エリアでグループ化）& タグセレクト
+  $("#f-pref").insertAdjacentHTML("beforeend", prefOptionsHTML());
+  const allTags = [...new Set(EVENTS.flatMap(e => e.tags))].sort();
+  const fTag = $("#f-tag");
+  allTags.forEach(t => fTag.insertAdjacentHTML("beforeend", `<option value="${t}">${t}</option>`));
+
+  // 注目イベント（featured優先 → 開催が近い順 → 4件）
+  const featured = [...EVENTS].sort((a,b) => (b.featured?1:0)-(a.featured?1:0) || byDateUpcoming(a,b)).slice(0,4);
+  $("#featured").innerHTML = featured.map(eventCard).join("");
+
+  // エリアグリッド（8地方・件数つき）
+  $("#pref-grid").innerHTML = regionCardsHTML();
+
+  // ホームのコラム（3件）
+  $("#home-columns").innerHTML = [...COLUMNS].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,3).map(columnCard).join("");
+
+  // フッター エリアリンク
+  $("#footer-pref").innerHTML = REGIONS.map(r => `<li><a href="prefecture.html#region-${r.key}">${r.name}</a></li>`).join("");
+</script>
+</body>
+</html>

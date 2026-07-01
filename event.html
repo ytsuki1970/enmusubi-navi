@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>イベント詳細 ｜ 縁結びナビ</title>
+<meta name="description" content="全国の公的婚活イベントの詳細情報。日時・会場・参加費・申込先をまとめてチェック。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#D8412E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="縁結びナビ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="イベント詳細 ｜ 縁結びナビ">
+<meta property="og:description" content="全国の公的婚活イベントの詳細情報。日時・会場・参加費・申込先をまとめてチェック。">
+<meta property="og:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap site-header__in">
+    <a class="brand" href="index.html"><span class="brand__mark">縁</span><span><span class="brand__name">縁結びナビ</span><br><span class="brand__sub">En-musubi Navi</span></span></a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="site-nav">
+      <a href="index.html">ホーム</a>
+      <a href="events.html">イベント一覧</a>
+      <a href="prefecture.html">県から探す</a>
+      <a href="columns.html">コラム</a>
+      <a href="about.html">このサイトは</a>
+      <a class="btn btn--primary" href="plan.html">掲載・料金</a>
+    </nav>
+  </div>
+</header>
+
+<main class="section" id="main">
+  <div class="wrap" id="content"><!-- JSで描画 --></div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__bottom" style="border-top:none">
+    <span>© <span id="year"></span> 縁結びナビ / En-musubi Navi</span>
+    <span><a href="about.html">このサイトについて</a> ／ <a href="post.html">掲載のご依頼</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/app.js?v=9"></script>
+<script>
+  const id = getParam("id");
+  const ev = EVENTS.find(e => e.id === id);
+  const box = $("#content");
+
+  if (!ev) {
+    box.innerHTML = `<div class="empty"><div class="empty__ic">🤔</div>
+      <p>お探しのイベントが見つかりませんでした。</p>
+      <p style="margin-top:1rem"><a class="btn btn--primary" href="events.html">イベント一覧へ戻る</a></p></div>`;
+  } else {
+    const p = prefBy(ev.pref);
+    const org = ORG_TYPES[ev.orgType] || {label:"",note:""};
+    const ongoing = !!ev.ongoing;
+    const past = !ongoing && isPast(ev.date);
+    const dl = ev.deadline ? daysLeft(ev.deadline) : null;
+    document.title = `${ev.title} ｜ 縁結びナビ`;
+
+    // 同じ県の関連イベント
+    const related = EVENTS.filter(e => e.pref === ev.pref && e.id !== ev.id).sort(byDateUpcoming).slice(0,2);
+
+    box.innerHTML = `
+      <p class="page-head__crumb" style="margin-bottom:1.2rem">
+        <a href="index.html">ホーム</a> ／ <a href="prefecture.html?pref=${ev.pref}">${p.name}</a> ／ ${ev.title}
+      </p>
+
+      <div class="detail">
+        <div>
+          <div class="detail__hero" style="--c:${p.color};background:${p.color}">
+            <div class="tags">
+              <span class="chip">${org.label}</span>
+              <span class="chip">${p.name} ${ev.city}</span>
+              ${ongoing ? `<span class="chip">常設・随時</span>` : (past ? `<span class="chip">受付終了</span>` : (dl>=0 && dl<=7 ? `<span class="chip">締切まで${dl}日</span>` : ""))}
+            </div>
+            <h1>${ev.title}</h1>
+          </div>
+
+          <div class="detail__body">
+            <h2>イベント概要</h2>
+            <p>${ev.body}</p>
+
+            <h2>開催要項</h2>
+            <table class="spec">
+              <tr><th>開催日</th><td>${ongoing ? "通年・随時（次回は公式ページで告知）" : fmtDate(ev.date)}</td></tr>
+              <tr><th>時間</th><td>${ev.time}</td></tr>
+              <tr><th>会場</th><td>${ev.venue}（${p.name}${ev.city}）</td></tr>
+              <tr><th>対象</th><td>${ev.target}</td></tr>
+              <tr><th>参加費</th><td>${ev.fee}</td></tr>
+              <tr><th>定員</th><td>${ev.capacity === "—" ? "公式サイトでご確認ください" : ev.capacity + (ev.ratio && ev.ratio !== "—" ? `（男女比 ${ev.ratio}）` : "")}</td></tr>
+              ${ev.deadline ? `<tr><th>申込締切</th><td>${fmtDate(ev.deadline)}</td></tr>` : ""}
+              <tr><th>主催</th><td>${ev.organizer}<br><small style="color:var(--ink-soft)">${org.note}</small></td></tr>
+              ${ev.source ? `<tr><th>情報元</th><td><a href="${ev.source}" target="_blank" rel="noopener" style="color:var(--thread);word-break:break-all">公式サイトで確認 ↗</a></td></tr>` : ""}
+            </table>
+            <p class="disclaimer">※ 当サイトの情報は ${DATA_UPDATED} 時点のものです。日時・参加費・募集状況は変更される場合があります。必ず公式サイトで最新情報をご確認ください。</p>
+
+            <div style="margin-top:2rem">${sponsorHTML('lead')}</div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="aside-card">
+            <h3>このイベントに申し込む</h3>
+            <div class="meta-row"><span>開催日</span><b>${ongoing ? "随時／通年" : fmtDate(ev.date)}</b></div>
+            <div class="meta-row"><span>参加費</span><b>${ev.fee === "公式サイトでご確認ください" ? "公式参照" : ev.fee}</b></div>
+            <div class="meta-row" style="border-bottom:none"><span>定員</span><b>${(ev.capacity === "—" || ev.capacity === "公式サイトでご確認ください") ? "公式参照" : ev.capacity}</b></div>
+            ${ongoing
+              ? `<a class="btn btn--primary" href="${ev.applyUrl}" target="_blank" rel="noopener">詳細・申込（公式）→</a>`
+              : (past
+                ? `<a class="btn btn--ghost" style="pointer-events:none;opacity:.6" href="#">受付は終了しました</a>`
+                : `<a class="btn btn--primary" href="${ev.applyUrl}" target="_blank" rel="noopener">公式サイトで申し込む →</a>`)}
+            <p class="disclaimer">※ 申込・最新情報は主催者の公式ページでご確認ください。当サイトは情報をまとめて掲載しています。</p>
+          </div>
+
+          <div class="aside-card" style="margin-top:1.2rem;position:static">
+            ${sponsorHTML('rail')}
+          </div>
+        </aside>
+      </div>
+
+      ${related.length ? `
+      <section class="section" style="padding-bottom:0">
+        <div class="sec-head"><span class="sec-head__kicker">More</span><h2 class="sec-head__title">${p.name}の他のイベント</h2></div>
+        <div class="ev-grid">${related.map(eventCard).join("")}</div>
+      </section>` : ""}
+    `;
+  }
+</script>
+</body>
+</html>

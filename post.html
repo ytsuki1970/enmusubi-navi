@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>掲載のご依頼（主催者の方へ） ｜ 縁結びナビ</title>
+<meta name="description" content="自治体・地方銀行・公的団体の婚活イベント掲載依頼フォーム。掲載は無料です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#D8412E">
+<link rel="canonical" href="https://ytsuki1970.github.io/enmusubi-navi/post.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="縁結びナビ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="掲載のご依頼（主催者の方へ） ｜ 縁結びナビ">
+<meta property="og:description" content="自治体・公的団体の婚活イベント掲載依頼フォーム。掲載は無料です。">
+<meta property="og:url" content="https://ytsuki1970.github.io/enmusubi-navi/post.html">
+<meta property="og:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap site-header__in">
+    <a class="brand" href="index.html"><span class="brand__mark">縁</span><span><span class="brand__name">縁結びナビ</span><br><span class="brand__sub">En-musubi Navi</span></span></a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="site-nav">
+      <a href="index.html">ホーム</a>
+      <a href="events.html">イベント一覧</a>
+      <a href="prefecture.html">県から探す</a>
+      <a href="columns.html">コラム</a>
+      <a href="about.html">このサイトは</a>
+      <a class="btn btn--primary" href="plan.html">掲載・料金</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <p class="page-head__crumb"><a href="index.html">ホーム</a> ／ 掲載のご依頼</p>
+    <p class="page-head roma" style="margin:0">For Organizers</p>
+    <h1>イベント掲載のご依頼</h1>
+    <p class="lede" style="margin-top:.6rem">自治体・金融機関・公的団体のみなさまの婚活イベントを<strong>無料</strong>で掲載します。</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:1.5rem">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 300px;gap:2.5rem;align-items:start">
+
+    <form class="form-card" id="postform" novalidate>
+      <div class="form-row">
+        <label>団体・主催者名 <span class="req">必須</span></label>
+        <input name="org" required placeholder="例：◯◯市 こども未来課 / ◯◯銀行 地域創生部">
+      </div>
+      <div class="form-row">
+        <label>主催区分 <span class="req">必須</span></label>
+        <select name="type" required>
+          <option value="">選択してください</option>
+          <option>自治体（市町村・県）</option>
+          <option>地方銀行・信用金庫</option>
+          <option>公的団体（商工会議所・JA・支援センター等）</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>ご担当者名 <span class="req">必須</span></label>
+        <input name="name" required placeholder="山田 太郎">
+      </div>
+      <div class="form-row">
+        <label>メールアドレス <span class="req">必須</span></label>
+        <input name="email" type="email" required placeholder="example@city.lg.jp">
+      </div>
+      <div class="form-row">
+        <label>開催県 <span class="req">必須</span></label>
+        <select name="pref" id="pref-sel" required><option value="">選択してください</option></select>
+      </div>
+      <div class="form-row">
+        <label>イベント名・概要 <span class="req">必須</span></label>
+        <textarea name="detail" required placeholder="イベント名、開催日時、会場、対象、参加費、定員、申込URL などをご記入ください。"></textarea>
+      </div>
+      <button class="btn btn--primary" type="submit" style="width:100%;justify-content:center">この内容で送信する</button>
+      <p class="disclaimer">※ これはデモ用フォームです。送信内容はサーバーに保存されません。実運用では送信先メールやフォームサービス（Googleフォーム等）と連携してください。</p>
+      <div id="done" class="notice" style="margin-top:1rem;background:rgba(46,125,91,.1);border-color:rgba(46,125,91,.3);color:var(--ok)" hidden>
+        ✓ 送信ありがとうございます（デモ）。担当より折り返しご連絡いたします。
+      </div>
+    </form>
+
+    <aside>
+      <div class="aside-card" style="position:static">
+        <h3>掲載のメリット</h3>
+        <div class="meta-row"><span>掲載料</span><b style="color:var(--thread)">無料</b></div>
+        <div class="meta-row"><span>対象</span><b>公的主催のみ</b></div>
+        <div class="meta-row" style="border-bottom:none"><span>掲載まで</span><b>約3営業日</b></div>
+        <p class="disclaimer">全国で婚活・出会い支援に取り組む公的機関を対象としています。民間事業者様の有料掲載・広告については別途お問い合わせください。</p>
+      </div>
+      <div class="aside-card" style="margin-top:1.2rem;position:static">
+        <div data-sponsor data-slot="rail"></div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__bottom" style="border-top:none">
+    <span>© <span id="year"></span> 縁結びナビ / En-musubi Navi</span>
+    <span><a href="about.html">このサイトについて</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/app.js?v=9"></script>
+<script>
+  $("#pref-sel").insertAdjacentHTML("beforeend", prefOptionsHTML());
+  $("#postform").addEventListener("submit", e => {
+    e.preventDefault();
+    if (!e.target.checkValidity()) { e.target.reportValidity(); return; }
+    $("#done").hidden = false;
+    e.target.scrollIntoView({behavior:"smooth", block:"end"});
+  });
+</script>
+</body>
+</html>

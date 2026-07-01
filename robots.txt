@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ytsuki1970.github.io/enmusubi-navi/sitemap.xml

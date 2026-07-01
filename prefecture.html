@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>県から探す ｜ 縁結びナビ</title>
+<meta name="description" content="全国47都道府県の公的婚活イベントを、北海道・東北・関東・中部・近畿・中国・四国・九州沖縄の8エリアからチェック。各都道府県の公式結婚支援センターも掲載。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#D8412E">
+<link rel="canonical" href="https://ytsuki1970.github.io/enmusubi-navi/prefecture.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="縁結びナビ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="エリア・都道府県から探す ｜ 縁結びナビ">
+<meta property="og:description" content="全国47都道府県の公的婚活イベントを8エリアからチェック。各都道府県の公式結婚支援センターも掲載。">
+<meta property="og:url" content="https://ytsuki1970.github.io/enmusubi-navi/prefecture.html">
+<meta property="og:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="エリア・都道府県から探す ｜ 縁結びナビ">
+<meta name="twitter:description" content="全国47都道府県の公的婚活イベントを8エリアからチェック。">
+<meta name="twitter:image" content="https://ytsuki1970.github.io/enmusubi-navi/assets/img/ogp.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap site-header__in">
+    <a class="brand" href="index.html"><span class="brand__mark">縁</span><span><span class="brand__name">縁結びナビ</span><br><span class="brand__sub">En-musubi Navi</span></span></a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="site-nav">
+      <a href="index.html">ホーム</a>
+      <a href="events.html">イベント一覧</a>
+      <a href="prefecture.html">県から探す</a>
+      <a href="columns.html">コラム</a>
+      <a href="about.html">このサイトは</a>
+      <a class="btn btn--primary" href="plan.html">掲載・料金</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head" id="phead">
+  <div class="wrap">
+    <p class="page-head__crumb"><a href="index.html">ホーム</a> ／ <a href="prefecture.html">県から探す</a> <span id="crumb-pref"></span></p>
+    <p class="page-head roma" id="phead-roma" style="margin:0">Area</p>
+    <h1 id="phead-title">エリア・都道府県から探す</h1>
+    <p class="lede" id="phead-catch" style="margin-top:.6rem"></p>
+  </div>
+</div>
+
+<!-- 県未選択時：県カードグリッド -->
+<section class="section" id="all-prefs" style="padding-top:1.5rem" hidden>
+  <div class="wrap"><div id="pref-grid"></div></div>
+</section>
+
+<!-- 県選択時：イベント一覧 + 他県切替 -->
+<section class="section" id="pref-events" style="padding-top:1.5rem" hidden>
+  <div class="wrap">
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem" id="pref-switch"></div>
+    <p id="result-count" style="color:var(--ink-soft);font-size:.92rem;margin-bottom:1.2rem"></p>
+    <div class="ev-grid" id="list"></div>
+    <div id="empty" class="empty" hidden>
+      <div class="empty__ic">📭</div>
+      <p>この県の掲載イベントは現在準備中です。<br>他のエリアもご覧ください。</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__bottom" style="border-top:none">
+    <span>© <span id="year"></span> 縁結びナビ / En-musubi Navi</span>
+    <span><a href="about.html">このサイトについて</a> ／ <a href="post.html">掲載のご依頼</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/app.js?v=9"></script>
+<script>
+  const key = getParam("pref");
+
+  if (!key) {
+    // 一覧モード：8エリアごとに全47都道府県を表示
+    $("#all-prefs").hidden = false;
+    $("#pref-grid").innerHTML = regionSectionsHTML();
+    // ページ内アンカー（#region-xxx）へスクロール
+    if (location.hash) { const t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
+  } else {
+    // 県モード
+    const p = prefBy(key);
+    document.title = `${p.name}の婚活イベント ｜ 縁結びナビ`;
+    $("#phead-title").textContent = `${p.name}の婚活イベント`;
+    $("#phead-roma").textContent = p.roma;
+    $("#phead-catch").textContent = p.catch;
+    $("#crumb-pref").textContent = "／ " + p.name;
+    $("#phead").style.borderBottom = `4px solid ${p.color}`;
+
+    // 公式窓口の案内
+    if (p.center) {
+      $("#phead-catch").insertAdjacentHTML("afterend",
+        `<p style="margin-top:1rem;font-size:.92rem">
+          <span style="display:inline-block;background:${p.color};color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;margin-right:.5rem">公式窓口</span>
+          <a href="${p.centerUrl}" target="_blank" rel="noopener" style="color:${p.color};font-weight:700">${p.center} ↗</a>
+        </p>`);
+    }
+
+    // 同エリアの他県へ切替（＋全エリアへ戻る）
+    const sib = PREFECTURES.filter(x => x.region === p.region);
+    $("#pref-switch").innerHTML =
+      `<a class="chip chip--pref" style="padding:.45rem 1rem;font-size:.85rem;border:1px solid var(--line)" href="prefecture.html">← 全エリア</a>` +
+      sib.map(x =>
+        `<a class="chip ${x.key===key?'chip--soon':'chip--pref'}" style="padding:.45rem 1rem;font-size:.85rem;${x.key===key?'':'border:1px solid var(--line)'}" href="prefecture.html?pref=${x.key}">${x.name}</a>`
+      ).join("");
+
+    const list = EVENTS.filter(e => e.pref === key).sort(byDateUpcoming);
+    $("#pref-events").hidden = false;
+    $("#result-count").textContent = `${list.length} 件のイベント`;
+    $("#list").innerHTML = list.map(eventCard).join("");
+    $("#empty").hidden = list.length > 0;
+  }
+</script>
+</body>
+</html>

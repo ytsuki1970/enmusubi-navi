@@ -1,0 +1,15 @@
+# 縁結びナビ — Netlify 設定（このフォルダをそのまま公開）
+[build]
+  publish = "."
+
+# HTMLは常に再検証（更新がすぐ反映される）
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# 画像・CSS・JSは長期キャッシュ（?v= でバージョン管理しているため）
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
