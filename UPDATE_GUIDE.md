@@ -105,7 +105,7 @@
 
 ## AIに任せる場合（コピペ用プロンプト）
 
-Claude Code で `kyushu-konkatsu` を開き、以下を貼り付ければ半自動で更新できます：
+Claude Code で `enmusubi-navi` を開き、以下を貼り付ければ半自動で更新できます：
 
 ```
 UPDATE_GUIDE.md の巡回先リンク集を順に確認し、各県の公式イベント情報ページから
