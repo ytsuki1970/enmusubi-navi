@@ -73,7 +73,7 @@
 ## 定期更新（仕組み化済み）
 
 - **更新手順書**：[UPDATE_GUIDE.md](UPDATE_GUIDE.md) に、7県の巡回先リンク・`EVENTS`の書き方・AI用コピペプロンプト・チェックリストをまとめています。
-- **自動スケジュール**：Claude Code の予約タスク `kyushu-konkatsu-monthly-update` を登録済み（**毎月1日 9:00**）。アプリ起動中に自動でデータ更新を試みます。「Scheduled」から管理・手動実行（Run now）が可能。
+- **自動スケジュール**：Claude Code の予約タスク `enmusubi-navi-monthly-update` を登録済み（**毎月1日 9:00**）。アプリ起動中に自動でデータ更新を試みます。「Scheduled」から管理・手動実行（Run now）が可能。
   - 初回は一度「Run now」で実行し、Web取得などのツール許可を事前承認しておくと、以降の自動実行が止まりません。
 
 ## 運用メモ（重要）

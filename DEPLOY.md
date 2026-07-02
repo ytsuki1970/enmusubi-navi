@@ -59,7 +59,7 @@
 
 - イベント／スポンサーを更新したら（`assets/js/data.js`）、全HTMLの `?v=` 番号を +1（[UPDATE_GUIDE.md](UPDATE_GUIDE.md) 参照）
 - データを増やしたら `node build-sitemap.mjs` で sitemap を作り直し → 再アップロード
-- 毎月の自動更新タスク（`kyushu-konkatsu-monthly-update`）がデータ追記を補助
+- 毎月の自動更新タスク（`enmusubi-navi-monthly-update`）がデータ追記を補助
 
 ---
 
