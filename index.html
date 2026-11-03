@@ -222,8 +222,8 @@
   </div>
 </footer>
 
-<script src="assets/js/data.js?v=10"></script>
-<script src="assets/js/app.js?v=10"></script>
+<script src="assets/js/data.js?v=11"></script>
+<script src="assets/js/app.js?v=11"></script>
 <script>
   // 件数
   $("#stat-count").textContent = EVENTS.length;
@@ -234,8 +234,9 @@
   const fTag = $("#f-tag");
   allTags.forEach(t => fTag.insertAdjacentHTML("beforeend", `<option value="${t}">${t}</option>`));
 
-  // 注目イベント（featured優先 → 開催が近い順 → 4件）
-  const featured = [...EVENTS].sort((a,b) => (b.featured?1:0)-(a.featured?1:0) || byDateUpcoming(a,b)).slice(0,4);
+  // 注目イベント（開催前のfeatured優先 → 開催が近い順 → 4件）。終了済みのfeaturedが居座らないよう開催前に限る
+  const isPick = e => e.featured && !e.ongoing && !isPast(e.date);
+  const featured = [...EVENTS].sort((a,b) => (isPick(b)?1:0)-(isPick(a)?1:0) || byDateUpcoming(a,b)).slice(0,4);
   $("#featured").innerHTML = featured.map(eventCard).join("");
 
   // エリアグリッド（8地方・件数つき）
